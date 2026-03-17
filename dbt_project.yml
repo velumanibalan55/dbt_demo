@@ -1,1 +1,90 @@
 
+name: 'snowflake_dbt_project'
+version: '1.0.0'
+config-version: 2
+
+profile: 'snowflake_profile'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+analysis-paths: ["analysis"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+quoting:
+  database: false
+  schema: false
+  identifier: false
+
+models:
+  snowflake_dbt_project:
+
+    # -----------------------------
+    # STAGING LAYER
+    # -----------------------------
+    staging:
+      +schema: "STG"
+      +materialized: view
+      +tags: ["staging"]
+      +persist_docs:
+        relation: true
+        columns: true
+
+    # -----------------------------
+    # INTERMEDIATE LAYER
+    # -----------------------------
+    intermediate:
+      +schema: "INT"
+      +materialized: table
+      +tags: ["intermediate"]
+      +persist_docs:
+        relation: true
+        columns: true
+
+    # -----------------------------
+    # MARTS LAYER
+    # -----------------------------
+    marts:
+      +schema: "MART"
+      +materialized: table
+      +tags: ["mart"]
+      +persist_docs:
+        relation: true
+        columns: true
+
+      # Example subfolder configs
+      sales:
+        +cluster_by: ['order_date']
+        +tags: ["sales"]
+
+      finance:
+        +cluster_by: ['fiscal_month']
+        +tags: ["finance"]
+
+# -----------------------------
+# SEEDS
+# -----------------------------
+seeds:
+  snowflake_dbt_project:
+    +schema: "SEED"
+    +quote_columns: false
+
+# -----------------------------
+# SNAPSHOTS
+# -----------------------------
+snapshots:
+  snowflake_dbt_project:
+    +schema: "SNAPSHOT"
+    +strategy: timestamp
+    +updated_at: updated_at
+
+# -----------------------------
+# TESTS
+# -----------------------------
+tests:
+  +severity: error
+  +store_failures: true
