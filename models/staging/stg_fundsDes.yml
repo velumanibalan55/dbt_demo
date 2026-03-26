@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: stg_funds
+    description: funds
+
+    columns:
+      - name: FUND_ID
+        description: This is a unique identifier for the funds
+        data_tests:
+          - unique
+          - not_null
+      - name: FUND_NAME
+        description: FUND NAME
+        data_tests:
+          - not_null
+      - name: FUND_TYPE
+        description: Fund Type
+        data_tests:
+          - not_null
+      - name: INCEPTION_DATE
+        description: Created date
+        data_tests:
+          - not_null
+      - name: LOAD_TS
+        description: Load Type
+        data_tests:
+          - not_null
+
+
+
+
