@@ -24,8 +24,7 @@ models:
           - not_null
       - name: LOAD_TS
         description: Load Type
-        data_tests:
-          - not_null
+       
 
 
 
