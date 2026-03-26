@@ -1,0 +1,9 @@
+models:
+  - name: stg_fund_holdings
+    description: fund holding
+  - name: stg_fund_prices
+    description: fund prices
+  - name: stg_funds
+    description: funds
+  - name: stg_investors
+    description: investors
