@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: raw
+    database: MUTUALFUND
+    schema: RAW
+    tables:
+      - name: funds
+      - name: fund_prices
+      - name: investors
+      - name: transactions
+      - name: fund_holdings
